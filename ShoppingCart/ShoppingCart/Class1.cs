@@ -23,7 +23,6 @@ namespace ShoppingCart
                 result += book.Price * book.Count;
             }
             result *= preferential;
-
             return result;
         }
         /// <summary>

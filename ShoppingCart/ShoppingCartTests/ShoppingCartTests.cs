@@ -105,5 +105,43 @@ namespace ShoppingCart.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void CalculateSumPriceTest_一二集各買了一本_第三集買了兩本_價格應為370()
+        {
+            //arrange
+            ShoppingCart shoppingCart = new ShoppingCart();
+            List<Book> books = new List<Book>()
+            {
+                new Book() { Name = "哈利波特1", Price = 100, Count = 1 },
+                new Book() { Name = "哈利波特2", Price = 100, Count = 1 },
+                new Book() { Name = "哈利波特3", Price = 100, Count = 2 },
+            };
+
+            //act
+            var actual = shoppingCart.CalculateSumPrice(books);
+            var expected = 370;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void CalculateSumPriceTest_第一集買了一本_第二三集各買了兩本_價格應為460()
+        {
+            //arrange
+            ShoppingCart shoppingCart = new ShoppingCart();
+            List<Book> books = new List<Book>()
+            {
+                new Book() { Name = "哈利波特1", Price = 100, Count = 1 },
+                new Book() { Name = "哈利波特2", Price = 100, Count = 2 },
+                new Book() { Name = "哈利波特3", Price = 100, Count = 2 },
+            };
+
+            //act
+            var actual = shoppingCart.CalculateSumPrice(books);
+            var expected = 460;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
