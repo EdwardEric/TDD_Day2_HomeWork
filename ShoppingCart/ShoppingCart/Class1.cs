@@ -18,22 +18,19 @@ namespace ShoppingCart
         {
             double result = 0;
             double preferential = 1;
-            while(bookGroup.Sum(x =>x.Count) !=0)
+            preferential = GetPreferential(bookGroup.Where(x => x.Count > 0).Count());
+            foreach (var book in bookGroup)
             {
-                double sum = 0;
-                preferential = GetPreferential(bookGroup.Where(x => x.Count > 0).Count());
-                foreach (var book in bookGroup)
+                if (book.Count > 0)
                 {
-                    if (book.Count > 0)
-                    {
-                        sum += book.Price;
-                        book.Count -= 1;
-                    }       
+                    result += book.Price;
+                    book.Count -= 1;
                 }
-                result += sum * preferential;
-
             }
-            return result;
+            if (bookGroup.Sum(x => x.Count) != 0)
+                return result * preferential + CalculateSumPrice(bookGroup);
+            else
+                return result * preferential;
         }
         /// <summary>
         /// 取得優惠
