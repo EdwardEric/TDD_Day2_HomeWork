@@ -17,12 +17,22 @@ namespace ShoppingCart
         public double CalculateSumPrice(List<Book> bookGroup)
         {
             double result = 0;
-            double preferential = GetPreferential(bookGroup.Count);
-            foreach (var book in bookGroup)
+            double preferential = 1;
+            while(bookGroup.Sum(x =>x.Count) !=0)
             {
-                result += book.Price * book.Count;
+                double sum = 0;
+                preferential = GetPreferential(bookGroup.Where(x => x.Count > 0).Count());
+                foreach (var book in bookGroup)
+                {
+                    if (book.Count > 0)
+                    {
+                        sum += book.Price;
+                        book.Count -= 1;
+                    }       
+                }
+                result += sum * preferential;
+
             }
-            result *= preferential;
             return result;
         }
         /// <summary>
