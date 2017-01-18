@@ -16,9 +16,9 @@ namespace ShoppingCart.Tests
         {
             //arrange
             ShoppingCart shoppingCart = new ShoppingCart();
-            List<Book> books = new List<Book>();
+            List<Book> books = new List<Book>()
             {
-                new Book() { Name = "哈利波特1", Price = 100, Count = 1 };
+                new Book() { Name = "哈利波特1", Price = 100, Count = 1 }
             };
 
             //act

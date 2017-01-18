@@ -16,7 +16,10 @@ namespace ShoppingCart
     {
         public double CalculateSumPrice(List<Book> bookGroup)
         {
-            return 0;
+            double result = 0;
+            foreach (var book in bookGroup)
+                result += book.Price * book.Count;
+            return result;
         }
     }
 }
