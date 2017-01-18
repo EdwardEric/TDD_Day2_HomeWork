@@ -26,6 +26,8 @@ namespace ShoppingCart
                 result *= 0.95;
             if (bookGroup.Count == 3)
                 result *= 0.90;
+            if (bookGroup.Count == 4)
+                result *= 0.80;
             return result;
         }
     }
